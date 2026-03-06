@@ -1,0 +1,3072 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>妇女节祝福</title>
+    <style>
+        /* 字体未加载完成时隐藏文字，避免闪烁模糊 */
+        .greeting-text {
+            visibility: hidden;
+        }
+        /* 字体加载完成后显示 */
+        .fonts-loaded .greeting-text {
+            visibility: visible;
+        }
+
+        /* 全局盒子模型设置 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* 新增：重置html标签，解决全屏适配问题 */
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Heiti SC', 'WenQuanYi Micro Hei', sans-serif;
+            text-align: center;
+            /*background-color: #fff5f7;*/
+            /*padding: 50px;*/
+            /*margin: 0;*/
+            /* 核心修改：背景图片 */
+            background-image: url('picture/seaOfFlowers.jpg');
+
+            /* 调整背景 */
+            background-size: cover;       /* 图片铺满整个屏幕，不变形 */
+            background-position: center;  /* 图片居中显示 */
+            background-repeat: no-repeat; /* 图片不重复 */
+            background-attachment: fixed; /* 页面滚动时背景固定不动（高级感） */
+
+            /* 保留一点粉色作为 fallback（防止图片加载失败） */
+            background-color: #fff5f7;
+
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        /* 给 body 加一个半透明粉色遮罩层，让文字更清晰 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 245, 247, 0.5); /* 0.5 是透明度，0-1之间可调 */
+            z-index: -1; /* 把遮罩放在最下面 */
+        }
+
+        /* ==================== 祝福卡片样式 ==================== */
+        /*祝福卡片区域*/
+        .card {
+            background: white; /* 白色背景 */
+            z-index: 200;
+            padding: 40px; /* 内边距40px */
+            border-radius: 20px; /* 圆角20像素 */
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3); /* 粉色阴影 */
+            display: inline-block; /* 宽度自适应内容 */
+            margin-top: 20px; /* 上边距20px */
+        }
+
+        h1 {
+            color: #e9546b; /* 设置卡片标题为深粉色 */
+        }
+
+        p {
+            color: indigo;
+        }
+
+        /* 按钮默认状态 */
+        button {
+            background-color: #ff9eb5; /* 按钮背景色 */
+            color: white; /* 文字颜色 */
+            border: none; /* 去掉边框 */
+            padding: 15px 30px; /* 内边距：上下15px，左右30px */
+            font-size: 18px; /* 文字大小 */
+            border-radius: 50px; /* 圆形按钮 */
+            cursor: pointer; /* 鼠标变手型 */
+            margin: 20px; /* 外边距 */
+        }
+
+        /* 鼠标悬停在按钮时的按钮样式 */
+        button:hover {
+            background-color: #e9546b; /* 悬停时变深粉色 */
+            transform: scale(1.1); /* 悬停时放大 */
+        }
+
+        /* 隐藏的祝福区域 */
+        #surprise {
+            display: none; /* 初始状态隐藏此元素 */
+            margin-top: 30px; /* 当显示时，顶部与上方元素保持距离 */
+            font-size: 20px; /* 设置文字大小 */
+            color: #666; /* 设置文字颜色为深灰色 */
+        }
+
+        /* 心形图标 */
+        .heart {
+            color: red;
+            font-size: 24px; /* 心形大小 */
+            animation: beat 1s infinite; /* 应用心跳动画：名称beat 1秒无限循环 */
+        }
+
+        /* 定义名为"beat"的动画 */
+        @keyframes beat {
+            /* 开始和结束：原始大小 */
+            0%, 100% {
+                transform: scale(1);
+            } 50% {
+                transform: scale(1.5); /* 中间：放大1.5倍 */
+            }
+        }
+
+        /* ==================== 音乐播放器样式 ==================== */
+        /* 音乐播放器卡片样式 */
+        .music-player-card {
+            position: fixed;  /* 固定在页面左上角 */
+            top: 20px;
+            left: 20px;
+            width: 240px;  /* 卡片宽度240像素 */
+            max-height: 90vh; /* 最大高度 90%视口高度 */
+            background: white;
+            border-radius: 15px; /* 15像素圆角，柔和边缘 */
+            box-shadow: 0 8px 20px rgba(233, 84, 107, 0.2); /* 粉色阴影 */
+            padding: 15px;  /* 内边距15像素，确保内容不紧贴边缘 */
+            z-index: 100;
+            transition: all 0.3s ease; /* 所有属性变化都添加0.3秒的平滑过渡效果 */
+            border: 2px solid rgba(255, 158, 181, 0.3); /* 粉色边框，半透明效果 */
+            overflow-y: auto; /* 允许滚动 */
+        }
+
+        /* 鼠标悬停在卡片上时的交互效果 */
+        .music-player-card:hover {
+            transform: translateY(-5px); /* 上移5像素，创造悬浮感 */
+            box-shadow: 0 12px 25px rgba(233, 84, 107, 0.3); /* 加深阴影，增强立体感 */
+        }
+
+        /* 音乐播放器标题区域样式 */
+        .music-header {
+            display: flex; /* 弹性布局，方便对齐子元素 */
+            align-items: center; /* 垂直居中对齐 */
+            margin-bottom: 10px; /* 底部外边距10像素，与下方内容分隔 */
+        }
+
+        /* 音乐图标样式 */
+        .music-icon {
+            width: 30px; /* 图标容器宽度30像素 */
+            height: 30px; /* 图标容器高度30像素 */
+            background: linear-gradient(135deg, #e9546b, #ff9eb5); /* 粉色渐变背景 */
+            border-radius: 8px; /* 8像素圆角，略微圆润 */
+            display: flex; /* 弹性布局 */
+            align-items: center; /* 垂直居中图标 */
+            justify-content: center; /* 水平居中图标 */
+            color: white; /* 图标颜色为白色 */
+            font-size: 16px; /* 图标大小16像素 */
+            margin-right: 8px; /* 右侧外边距8像素，与标题保持距离 */
+        }
+
+        /* 音乐播放器标题文字样式 */
+        .music-title {
+            font-size: 12px; /* 字体大小12像素，适合小尺寸卡片 */
+            color: #e9546b; /* 粉色文字，与整体主题协调 */
+            font-weight: bold; /* 加粗字体，突出标题 */
+        }
+
+        /* 播放器控制按钮容器样式 */
+        .player-controls {
+            display: flex; /* 弹性布局，便于按钮排列 */
+            justify-content: space-between; /* 按钮在容器中均匀分布 */
+            align-items: center; /* 垂直居中对齐 */
+            margin-bottom: 8px; /* 底部外边距8像素，与下方内容分隔 */
+        }
+
+        /* 通用播放器按钮样式 */
+        .player-btn {
+            background: none; /* 透明背景 */
+            border: none; /* 无边框 */
+            color: #e9546b; /* 粉色图标，与主题一致 */
+            cursor: pointer; /* 鼠标指针变为手形，表示可点击 */
+            font-size: 14px; /* 图标大小14像素 */
+            padding: 5px; /* 内边距5像素，增加点击区域 */
+            border-radius: 50%; /* 圆形按钮 */
+            width: 30px; /* 固定宽度30像素 */
+            height: 30px; /* 固定高度30像素，保持为圆形 */
+            display: flex; /* 使用弹性布局 */
+            align-items: center; /* 垂直居中图标 */
+            justify-content: center; /* 水平居中图标 */
+            transition: all 0.3s ease; /* 所有属性变化都添加0.3秒的平滑过渡效果 */
+        }
+
+        /* 鼠标悬停在按钮上时的效果 */
+        .player-btn:hover {
+            background: rgba(84, 233, 127, 0.5); /* 半透明淡薄荷绿背景，保留0.5的透明度 */
+        }
+
+        /* 特殊样式：播放/暂停按钮 */
+        .play-btn {
+            background: linear-gradient(135deg, #e9546b, #ff9eb5); /* 粉色渐变背景，突出显示 */
+            color: white; /* 白色图标，与背景形成对比 */
+            font-size: 16px; /* 稍大的图标，更易点击 */
+        }
+
+        /* 播放/暂停按钮悬停效果 */
+        .play-btn:hover {
+            transform: scale(1.1); /* 放大10%，增强交互反馈 */
+        }
+
+        /* 歌曲信息区域样式 */
+        .music-info {
+            font-size: 10px; /* 较小的字体大小（10像素），适合小卡片 */
+            color: #666; /* 深灰色文字，次要信息 */
+            margin-top: 8px; /* 顶部外边距8像素，与控制按钮分隔 */
+            white-space: nowrap; /* 不换行，保持一行显示 */
+            overflow: hidden; /* 超出部分隐藏 */
+            text-overflow: ellipsis; /* 超出部分显示为省略号 */
+        }
+
+        /* 歌曲标题样式 */
+        .song-title {
+            color: #333; /* 深黑色文字，突出显示 */
+            font-weight: bold; /* 加粗字体 */
+            margin-bottom: 2px; /* 底部外边距2像素，与艺术家信息分隔 */
+        }
+
+        /* 播放列表下拉按钮样式 */
+        .playlist-toggle {
+            display: block; /* 块级显示，占满整行 */
+            width: 80%; /* 宽度占容器80% */
+            background: rgba(233, 84, 107, 0.1); /* 浅粉色半透明背景 */
+            border: none; /* 无边框 */
+            color: #e9546b; /* 粉色文字 */
+            padding: 6px; /* 内边距6像素 */
+            border-radius: 10px; /* 10像素圆角 */
+            font-size: 10px; /* 字体大小10像素 */
+            cursor: pointer; /* 鼠标指针变为手形，表示可点击 */
+            margin-top: 8px; /* 顶部外边距8像素，与上方内容分隔 */
+            align-items: center; /* 垂直居中图标 */
+            justify-content: center; /* 水平居中图标 */
+            transition: all 0.3s ease; /* 所有属性变化都添加0.3秒的平滑过渡效果 */
+        }
+
+        /* 播放列表下拉按钮悬停效果 */
+        .playlist-toggle:hover {
+            background: rgba(233, 84, 107, 0.2); /* 悬停时加深背景颜色，增强交互反馈 */
+        }
+
+        /* 播放列表容器样式（默认隐藏） */
+        .playlist {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease; /* 稍微放慢动画，更优雅 */
+            margin-top: 8px;
+            padding-right: 4px; /* 为滚动条预留一点空间 */
+        }
+
+        /* 播放列表显示时的样式 */
+        .playlist.show {
+            max-height: 280px; /* 设定一个舒适的高度，大约能显示8-9首歌 */
+            overflow-y: auto; /* 核心：允许垂直滚动 */
+            overflow-x: hidden; /* 禁止横向滚动 */
+            /* Firefox 兼容 */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(233, 84, 107, 0.3) transparent; /* 滑块颜色 轨道颜色 */
+        }
+
+        /* ==================== 自定义滚动条美化 ==================== */
+        /* 1. 滚动条整体轨道 */
+        .playlist::-webkit-scrollbar {
+            width: 6px; /* 滚动条默认宽度：细窄不突兀 */
+        }
+
+        /* 2. 滚动条轨道背景 */
+        .playlist::-webkit-scrollbar-track {
+            background: rgba(233, 84, 107, 0.05); /* 极淡的粉色背景 */
+            border-radius: 3px;
+        }
+
+        /* 3. 滚动条滑块 */
+        .playlist::-webkit-scrollbar-thumb {
+            background: rgba(233, 84, 107, 0.3); /* 半透明粉色滑块 */
+            border-radius: 3px;
+            transition: background 0.3s ease;
+        }
+
+        /* 4. 鼠标悬停在播放列表上时的滑块样式 */
+        .playlist:hover::-webkit-scrollbar-thumb {
+            background: rgba(233, 84, 107, 0.6); /* 悬停时变深，方便拖动 */
+        }
+
+        /* 5. 鼠标悬停在滑块上时 */
+        .playlist::-webkit-scrollbar-thumb:hover {
+            background: #e9546b; /* 完全实心主题色 */
+            width: 8px; /* 稍微变宽 */
+        }
+
+        /* 播放列表项样式 */
+        .playlist-item {
+            padding: 6px 8px;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            background: rgba(245, 245, 245, 0.5);
+            transition: all 0.3s ease;
+            display: flex; /* 使用flex布局 */
+            justify-content: space-between; /* 标题靠左，时长靠右 */
+            align-items: center;
+        }
+
+        /* 播放列表项悬停效果 */
+        .playlist-item:hover {
+            background: rgba(233, 84, 107, 0.1); /* 悬停时变为粉色半透明背景 */
+        }
+
+        /* 当前播放的歌曲项激活样式 */
+        .playlist-item.active {
+            background: rgba(233, 84, 107, 0.15); /* 比悬停更深的粉色背景 */
+            border-left: 3px solid #e9546b; /* 左侧粉色边框，突出显示当前播放 */
+        }
+
+        /* 播放列表项中歌曲标题样式 */
+        .playlist-item .item-title {
+            font-weight: bold; /* 加粗字体 */
+            color: #333; /* 深黑色文字 */
+        }
+
+        /* 播放列表项中歌曲时长样式 */
+        .playlist-item .item-duration {
+            font-size: 8px; /* 更小的字体大小（8像素） */
+            color: #888; /* 浅灰色，次要信息 */
+            float: right; /* 右浮动，与标题右对齐 */
+        }
+
+        /* 音乐播放器进度条样式 */
+        /* 时间显示区域 */
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #666;
+            margin: 8px 0 4px;
+            padding: 0 2px;
+        }
+
+        /* 进度条主容器 */
+        .progress-container {
+            position: relative;
+            width: 100%;
+            height: 6px;
+            background: rgba(233, 84, 107, 0.1);
+            border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: height 0.2s ease;
+        }
+
+        /* 鼠标悬停时进度条变粗，增强交互感 */
+        .progress-container:hover {
+            height: 8px;
+        }
+
+        /* 缓冲进度条 */
+        .progress-buffer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba(233, 84, 107, 0.2);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* 已播放进度条 */
+        .progress-played {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #ff9eb5, #e9546b);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* 进度拖拽圆点 */
+        .progress-dot {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border: 2px solid #e9546b;
+            border-radius: 50%;
+            cursor: grab;
+            opacity: 0;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(233, 84, 107, 0.3);
+        }
+
+        /* 鼠标悬停进度条时显示圆点 */
+        .progress-container:hover .progress-dot {
+            opacity: 1;
+        }
+
+        /* 拖拽时圆点样式 */
+        .progress-dot:active {
+            cursor: grabbing;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        /* 悬停时间提示气泡 */
+        .progress-tooltip {
+            position: absolute;
+            top: -30px;
+            transform: translateX(-50%);
+            background: #e9546b;
+            color: white;
+            font-size: 10px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+        }
+
+        /* 鼠标悬停时显示气泡 */
+        .progress-container:hover .progress-tooltip {
+            opacity: 1;
+        }
+
+        /* ==================== 相册相关样式 ==================== */
+        /* 相册容器样式 - 全屏显示相册页面 */
+        .album-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 245, 247, 0.95);
+            z-index: 300;
+            display: none;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* 相册容器激活状态 - 显示相册 */
+        .album-container.active {
+            display: block;
+        }
+
+        /* 相册头部样式 */
+        .album-header {
+            margin: 20px 0 40px;
+        }
+
+        /* 相册标题样式 */
+        .album-title {
+            color: #e9546b;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* 相册副标题样式 */
+        .album-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        /* 相册网格布局 - 使用CSS Grid实现响应式布局 */
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 相册项样式 - 每张照片的容器 */
+        .album-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 1 / 1; /* 使用宽高比替代固定高度 */
+        }
+
+        /* 相册项悬停效果 */
+        .album-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(233, 84, 107, 0.2);
+        }
+
+        /* 相册项中的图片样式 */
+        .album-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* 相册项悬停时图片放大 */
+        .album-item:hover img {
+            transform: scale(1.05); /* 放大5% */
+        }
+
+        /* 相册项标题区域 - 默认隐藏，悬停时显示 */
+        .album-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        /* 相册项悬停时显示标题 */
+        .album-item:hover .album-caption {
+            transform: translateY(0);
+        }
+
+        /* 相册标题样式 */
+        .album-caption h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2rem;
+        }
+
+        /* 相册描述样式 */
+        .album-caption p {
+            color: #ff69b4;
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.8);
+        }
+
+        /* 相册查看器模态框 - 全屏图片查看器 */
+        .album-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 400;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 相册查看器激活状态 - 显示查看器 */
+        .album-viewer.active {
+            display: flex; /* 使用flex布局显示 */
+        }
+
+        /* 查看器内容区域 */
+        .viewer-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        /* 查看器中的图片样式 */
+        .viewer-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        /* 查看器中的图片文字描述样式 */
+        #viewerDesc {
+            color: #ff69b4;
+            font-weight: 600;
+            font-size: 1.2rem;
+            /* 粉色外发光，和页面特效统一 */
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.8);
+        }
+
+        /* 查看器图片标题区域 */
+        .viewer-caption {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+
+        /* 查看器关闭按钮 */
+        .viewer-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* 查看器导航按钮（上一张/下一张） */
+        .viewer-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        /* 查看器导航按钮悬停效果 */
+        .viewer-nav:hover {
+            background: rgba(255, 255, 255, 0.3); /* 悬停时加深背景 */
+        }
+
+        /* 上一张按钮定位 */
+        .viewer-prev {
+            left: 20px;
+        }
+
+        /* 下一张按钮定位 */
+        .viewer-next {
+            right: 20px;
+        }
+
+        /* 返回按钮 - 返回祝福页面 */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #e9546b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 350;
+            display: none;
+        }
+
+        /* 返回按钮激活状态 - 显示按钮 */
+        .back-btn.active {
+            display: block;
+        }
+
+        /* 返回按钮悬停效果 */
+        .back-btn:hover {
+            background: #ff9eb5; /* 悬停时变为浅粉色 */
+        }
+
+        /* 相册按钮在祝福卡片中 */
+        .album-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* 相册按钮特殊样式 */
+        .album-button {
+            background: linear-gradient(135deg, #6a5acd, #9370db); /* 紫色渐变背景 */
+        }
+
+        /* 相册按钮悬停效果 */
+        .album-button:hover {
+            background: linear-gradient(135deg, #9370db, #ba55d3); /* 悬停时变为更亮的紫色渐变 */
+        }
+
+        /* 加载动画 - 相册加载时显示 */
+        .loading {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #e9546b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        /* 旋转动画关键帧 */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 输入框焦点样式 */
+        .input-field:focus {
+            outline: 2px solid #e9546b;
+            outline-offset: 2px;
+            border-color: #e9546b;
+            box-shadow: 0 0 0 3px rgba(233, 84, 107, 0.1);
+        }
+
+        /* 验证码图片初始隐藏 */
+        .captcha-img:not([src]) {
+            display: none;
+        }
+
+        /* 响应式设计 - 移动端适配 */
+        @media (max-width: 768px) {
+            /* 移动端音乐播放器卡片宽度 */
+            .music-player-card {
+                width: 200px;
+            }
+
+            /* 移动端相册网格布局 */
+            .album-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            /* 移动端相册标题大小 */
+            .album-title {
+                font-size: 2rem;
+            }
+
+            /* 移动端相册按钮布局 */
+            .album-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* 移动端相册按钮宽度 */
+            .album-buttons button {
+                width: 80%;
+            }
+        }
+
+        /* ==================== 登录相关样式 ==================== */
+        /* 退出按钮容器 */
+        #logoutContainer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none; /* 默认隐藏，登录成功后显示 */
+        }
+
+        /* 退出按钮 */
+        #globalLogoutBtn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        /* 退出按钮悬停效果 */
+        #globalLogoutBtn:hover {
+            background: linear-gradient(135deg, #ee5a52, #ff4757);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* 退出按钮点击效果 */
+        #globalLogoutBtn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        /* 退出按钮图标 */
+        #globalLogoutBtn i {
+            font-size: 16px;
+        }
+
+        /* 退出按钮文字 */
+        #globalLogoutBtn .logout-text {
+            font-size: 16px;
+        }
+
+        /* 响应式设计 - 移动端适配 */
+        @media (max-width: 768px) {
+            /* 移动端退出按钮容器 */
+            #logoutContainer {
+                top: 10px;
+                right: 10px;
+            }
+
+            /* 移动端退出按钮 */
+            #globalLogoutBtn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            /* 移动端退出按钮文字隐藏，只显示图标 */
+            #globalLogoutBtn .logout-text {
+                display: none;
+            }
+
+            /* 移动端退出按钮图标 */
+            #globalLogoutBtn i {
+                font-size: 18px;
+                margin: 0;
+            }
+        }
+
+        /* ==================== 登录页面样式 ==================== */
+        /* 登录页面容器 */
+        .login-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            /* 强制占满整个浏览器窗口，无任何缩进 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+
+            /* 登录页专属背景图，替换成你的图片路径/URL */
+            background-image: url('picture/loginPageBackgroundImage.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            z-index: 100;
+            box-sizing: border-box;
+        }
+
+        /* 登录页遮罩层，保证文字清晰不糊 */
+        .login-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 245, 247, 0.5); /* 透明度0-1可调，数字越小背景越明显 */
+            z-index: 0;
+        }
+
+        /* 让登录卡片在遮罩层之上，不被盖住 */
+        .login-card {
+            position: relative;
+            z-index: 1;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+        }
+
+        /* 登录卡片 */
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+        }
+
+        /* 登录标题 */
+        .login-title {
+            color: #e9546b;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* 输入框组 */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+            width: 300px;
+        }
+
+        /* 输入框标签 */
+        .input-label {
+            color: #666;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* 输入框 */
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Microsoft YaHei', sans-serif;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        /* 输入框聚焦效果 */
+        .input-field:focus {
+            outline: none;
+            border-color: #e9546b;
+            box-shadow: 0 0 0 2px rgba(233, 84, 107, 0.1);
+        }
+
+        /* 验证码容器 */
+        .captcha-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* 验证码输入框容器 */
+        .captcha-input-container {
+            flex: 1;
+        }
+
+        /* 验证码图片 */
+        .captcha-img {
+            width: 120px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease;
+        }
+
+        /* 验证码图片悬停效果 */
+        .captcha-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 登录按钮 */
+        .login-btn {
+            width: 100%;
+            background-color: #e9546b;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Microsoft YaHei', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        /* 登录按钮悬停效果 */
+        .login-btn:hover {
+            background-color: #ff9eb5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(233, 84, 107, 0.3);
+        }
+
+        /* 登录按钮激活效果 */
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 错误提示 */
+        .error-msg {
+            color: red;
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* 响应式设计 - 移动端适配 */
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+
+            .input-group {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .captcha-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .captcha-img {
+                width: 100%;
+                height: 45px;
+                margin-top: 10px;
+            }
+        }
+
+        /* 隐藏元素 */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ==================== 主内容区域样式 ==================== */
+        .main-content {
+            display: none; /* 初始状态隐藏，登录后显示 */
+            /* 核心：把原来body的50px padding移到这里，主页面内容不会贴边 */
+            padding: 50px;
+            min-height: 100vh;
+            box-sizing: border-box; /* 确保padding不会撑大容器 */
+        }
+
+        /* ==================== 烟花特效样式 ==================== */
+        .fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 让点击穿透，不影响下面的操作 */
+            z-index: 500; /* 确保在最上层 */
+            display: none; /* 默认隐藏 */
+            overflow: hidden;
+        }
+
+        .fireworks-container.active {
+            display: block;
+        }
+
+        /* 单个烟花粒子 */
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            /* 超强发光效果 */
+            box-shadow:
+                0 0 6px currentColor,
+                0 0 12px currentColor,
+                0 0 20px currentColor;
+            will-change: transform, opacity;
+            --tx: 0px;
+            --ty: 0px;
+            --gravity: 0px;
+            --targetY: 0px;
+        }
+
+        /* 主爆炸动画（带重力效果） */
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                /* 新增重力：ty 额外加下落距离 */
+                transform: translate(var(--tx), calc(var(--ty) + var(--gravity))) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 二次小爆炸动画 */
+        @keyframes miniExplode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 上升动画（烟花升空效果） */
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) scale(0.8);
+                opacity: 0;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(var(--targetY)) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 烟花升空的拖尾 */
+        .firework-trail {
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            border-radius: 2px;
+            background: linear-gradient(to top, currentColor, transparent);
+            animation: rise 1.2s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* ==================== 特效大字样式 ==================== */
+        .greeting-text-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 600; /* 在烟花之上 */
+            display: none;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .greeting-text-container.active {
+            display: block;
+        }
+
+        .greeting-text {
+            font-family: "ZCOOL KuaiLe", "Microsoft YaHei", sans-serif;
+            font-size: 12rem;
+            font-weight: 400;
+            /* 核心：纯色打底，保证文字轮廓100%清晰 */
+            color: #e9546b;
+            /* 立体文字阴影，不糊，有质感 */
+            text-shadow:
+                1px 1px 0 #ffd700,
+                2px 2px 0 #ff9eb5,
+                0 0 20px rgba(233, 84, 107, 0.8);
+            /* 字体渲染优化 */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            margin: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* 每个字的动画 */
+        .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(50px) scale(0.5) rotate(-10deg);
+            animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+        }
+
+        /* 响应式：移动端文字大小 */
+        @media (max-width: 768px) {
+            .greeting-text {
+                font-size: 5.6rem;
+                /* 移动端缩小发光范围，避免过度模糊 */
+                filter: drop-shadow(0 0 6px rgba(255, 158, 181, 0.6))
+                        drop-shadow(0 0 12px rgba(233, 84, 107, 0.4));
+            }
+        }
+    </style>
+    <!-- 引入Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- 引入：站酷快乐体（免费商用） -->
+    <!-- 站酷快乐体 国内稳定CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.cn">
+    <link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin>
+    <link href="https://fonts.googleapis.cn/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+</head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+<body>
+    <!-- ==================== 登录页面 ==================== -->
+    <div id="loginPage" class="login-page">
+        <div class="login-card">
+            <h1 class="login-title">田女士专属祝福</h1>
+
+            <div class="input-group">
+                <label class="input-label">账号</label>
+                <input type="text" id="username" class="input-field" placeholder="请输入账号">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">密码</label>
+                <input type="password" id="password" class="input-field" placeholder="请输入密码">
+            </div>
+
+            <div class="input-group captcha-group">
+                <div class="captcha-input-container">
+                    <label class="input-label">验证码</label>
+                    <input type="text" id="captcha" class="input-field" placeholder="请输入验证码">
+                </div>
+                <img id="captchaImg" src="" alt="验证码" class="captcha-img">
+            </div>
+
+            <button id="loginBtn" class="login-btn">登录</button>
+
+            <p id="loginError" class="error-msg"></p>
+        </div>
+    </div>
+
+    <div id="mainContent" class="main-content">
+        <!-- ==================== 音乐播放器相关HTML结构 ==================== -->
+        <!--音乐播放器卡片-->
+        <div class="music-player-card" id="musicPlayerCard">
+            <!-- 音乐播放器标题区域 -->
+            <div class="music-header">
+                <!-- 音乐图标 -->
+                <div class="music-icon">
+                    <!-- Font Awesome音乐图标 -->
+                    <i class="fas fa-music"></i>
+                </div>
+                <!-- 播放器标题文字 -->
+                <div class="music-title">温馨音乐</div>
+            </div>
+
+            <!-- 播放器控制按钮区域 -->
+            <div class="player-controls">
+                <!-- 上一首按钮 -->
+                <button class="player-btn" id="prevBtn" title="上一首">
+                    <i class="fas fa-step-backward"></i> <!-- 后退图标 -->
+                </button>
+                <!-- 播放/暂停按钮 -->
+                <button class="player-btn play-btn" id="playBtn" title="播放/暂停">
+                    <i class="fas fa-play"></i> <!-- 播放图标 -->
+                </button>
+                <!-- 下一首按钮 -->
+                <button class="player-btn" id="nextBtn" title="下一首">
+                    <i class="fas fa-step-forward"></i> <!-- 前进图标 -->
+                </button>
+            </div>
+
+            <!-- 当前歌曲信息区域 -->
+            <div class="music-info">
+                <div class="song-title" id="currentSongTitle">钢琴曲</div> <!-- 歌曲标题 -->
+                <div id="currentSongArtist">纯音乐</div> <!-- 艺术家/类型信息 -->
+            </div>
+
+            <!-- 进度条区域 -->
+            <!-- 时间显示：当前时间 / 总时长 -->
+            <div class="time-display">
+                <span id="currentTime">00:00</span>
+                <span id="totalTime">00:00</span>
+            </div>
+
+            <!-- 进度条主容器 -->
+            <div class="progress-container" id="progressContainer">
+                <!-- 缓冲进度条 -->
+                <div class="progress-buffer" id="progressBuffer"></div>
+                <!-- 已播放进度条 -->
+                <div class="progress-played" id="progressPlayed"></div>
+                <!-- 进度拖拽圆点 -->
+                <div class="progress-dot" id="progressDot"></div>
+                <!-- 悬停时间提示气泡 -->
+                <div class="progress-tooltip" id="progressTooltip">00:00</div>
+            </div>
+
+            <!-- 播放列表切换按钮 -->
+            <button class="playlist-toggle" id="playlistToggle">
+                <i class="fas fa-list"></i> 播放列表 <!-- 列表图标 + 文字 -->
+            </button>
+
+            <!-- 播放列表容器（初始状态下隐藏） -->
+            <div class="playlist" id="playlist">
+                <!-- 播放列表将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- ==================== 祝福卡片相关HTML结构 ==================== -->
+        <!--祝福卡片-->
+        <div class="card" id="mainCard">
+            <h1>我的女神老妈，节日快乐！</h1>
+            <p>感谢您一直以来无微不至的照顾。尽管有时候你做的饭不好吃，但我好歹也吃了二十多年了🤣</p>
+            <p>点击下面的按钮，收下我的一份小心意 ❤</p>
+
+            <div class="album-buttons">
+                <!--祝福按钮-->
+                <button id="surpriseBtn" >点我看看</button>
+                <!--相册按钮-->
+                <button class="album-button" >
+                    <i class="fas fa-images"></i> 查看相册
+                </button>
+            </div>
+
+            <!--隐藏的祝福语-->
+            <div id="surprise">
+                <p>在未来的每一天，都愿您<br><strong>健康、快乐、美丽</strong>！</p>
+                <p>同时也祝愿您能够减肥成功 <span class="heart">♥</span></p>
+                <p>—— 奥报仔</p>
+            </div>
+        </div>
+
+        <!-- ==================== 相册相关HTML结构 ==================== -->
+        <!-- 返回按钮 -->
+        <button class="back-btn" id="backBtn" >
+            <i class="fas fa-arrow-left"></i> 返回祝福
+        </button>
+        <!-- 相册容器：全屏显示的相册页面 -->
+        <div class="album-container" id="albumContainer">
+            <div class="album-header">
+                <h1 class="album-title">我们的美好回忆</h1>
+                <p class="album-subtitle">每一张照片都记录着我们的故事</p>
+            </div>
+            <!-- 相册网格：使用CSS Grid布局展示图片 -->
+            <div class="album-grid" id="albumGrid">
+                <!-- 相册内容将通过JavaScript动态生成 -->
+            </div>
+        </div>
+
+        <!-- 相册查看器 -->
+        <div class="album-viewer" id="albumViewer">
+            <!-- 关闭按钮 -->
+            <button class="viewer-close" id="closeViewerBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <!-- 上一张按钮 -->
+            <button class="viewer-nav viewer-prev" id="viewerPrevBtn" >
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <!-- 查看器内容区域 -->
+            <div class="viewer-content">
+                <!-- 当前查看的图片 -->
+                <img id="viewerImage" src="" alt="相册图片">
+                <!-- 图片标题和描述 -->
+                <div class="viewer-caption">
+                    <h3 id="viewerTitle">图片标题</h3>
+                    <p id="viewerDesc">图片描述</p>
+                </div>
+            </div>
+            <!-- 下一张按钮 -->
+            <button class="viewer-nav viewer-next" id="viewerNextBtn" >
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- 全局退出按钮容器 -->
+        <div id="logoutContainer">
+            <button id="globalLogoutBtn" title="退出登录">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="logout-text">退出登录</span>
+            </button>
+        </div>
+
+        <!-- 音频元素（隐藏的播放器核心） -->
+        <audio id="bgMusic" loop></audio>
+
+        <!-- 烟花爆炸声（短音效） -->
+        <audio id="fireworkSound" preload="auto">
+            <source src="audio/fireworksExplosionSoundEffect.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- 烟花特效容器 -->
+        <div id="fireworksContainer" class="fireworks-container"></div>
+
+        <!-- 特效文字容器 -->
+        <div id="greetingTextContainer" class="greeting-text-container">
+            <h1 id="greetingText" class="greeting-text"></h1>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * ==================== 登录逻辑 ====================
+         */
+        // 后端接口地址（根据实际部署修改，本地测试为http://localhost:5000）
+        // const API_BASE = "http://localhost:5000/api";
+        const API_BASE = "";
+        // 存储token的key
+        const TOKEN_KEY = "family_token";
+
+        /**
+         * 时间格式化工具：将秒数转为 mm:ss 格式
+         * @param {number} seconds - 总秒数
+         * @returns {string} 格式化后的时间字符串
+         */
+        function formatTime(seconds) {
+            if (isNaN(seconds) || seconds < 0) return "00:00";
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            // 补零，确保两位数
+            return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+        }
+
+        // 立即执行函数，确保验证码能正常加载
+        (function() {
+            console.log("开始加载验证码...");
+
+            // 立即加载验证码
+            fetch(`${API_BASE}/captcha`,{
+                credentials: 'include'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("验证码响应:", data);
+                    if (data.code === 200) {
+                        const img = document.getElementById("captchaImg");
+                        if (img) {
+                            img.src = data.data.captcha_img;
+                            console.log("验证码图片已设置");
+                        }
+                    } else {
+                        console.error("验证码响应错误:", data);
+                    }
+                })
+                .catch(err => console.log("验证码加载失败:", err));
+
+            // 绑定点击事件
+            const captchaImg = document.getElementById("captchaImg");
+            if (captchaImg) {
+                captchaImg.addEventListener("click", function() {
+                    console.log("验证码图片被点击，刷新验证码...");
+                    fetch(`${API_BASE}/captcha`, {
+                        credentials: 'include'
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.code === 200) {
+                                captchaImg.src = data.data.captcha_img;
+                                console.log("验证码已刷新");
+                            }
+                        })
+                        .catch(err => console.log("验证码刷新失败:", err));
+                });
+            }
+        })();
+
+        // 刷新验证码
+        function refreshCaptcha() {
+            console.log("refreshCaptcha被调用，API_BASE:", API_BASE);
+            fetch(`${API_BASE}/captcha`, {
+                credentials: 'include'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.code === 200) {
+                        const captchaImg = document.getElementById("captchaImg");
+                        if (captchaImg) {
+                            captchaImg.src = data.data.captcha_img;
+                            captchaImg.style.display = "block";
+                        }
+                    } else {
+                        console.error("验证码响应错误:", data);
+                    }
+                })
+                .catch(err => {
+                    console.error("验证码请求失败：", err);
+                    alert("后端服务未启动，请先运行Python后端");
+                });
+        }
+
+        // 页面加载时先获取验证码
+        refreshCaptcha(); // 直接调用，因为DOM已加载
+
+        // 页面加载时先获取验证码
+        window.onload = function() {
+            refreshCaptcha();
+            // 检查是否已有有效token（避免重复登录）
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (token) {
+                verifyToken(token);
+            }
+        };
+
+        /**
+         * 初始化所有功能函数
+         */
+        function initAllFunctions() {
+            // 初始化音乐播放器
+            initMusicPlayer();
+
+            // 2. 绑定所有交互事件
+            bindAllEvents();
+
+            // 显示右上角退出按钮
+            showLogoutButton();
+
+            console.log("所有功能已初始化");
+        }
+
+        /**
+         * 统一事件绑定中心
+         * 所有的点击事件都在这里绑定，不再使用 HTML 的 onclick
+         */
+        function bindAllEvents() {
+            // ------------------------------
+            // 1. 登录页面事件
+            // ------------------------------
+            // 登录按钮
+            const loginBtn = document.getElementById("loginBtn");
+            if (loginBtn) {
+                loginBtn.addEventListener("click", function() {
+                    // 登录按钮逻辑
+                    const username = document.getElementById("username").value.trim();
+                    const password = document.getElementById("password").value.trim();
+                    const captcha = document.getElementById("captcha").value.trim();
+                    const errorEl = document.getElementById("loginError");
+
+                    errorEl.style.display = "none";
+                    errorEl.textContent = "";
+
+                    if (!username || !password || !captcha) {
+                        errorEl.textContent = "账号、密码、验证码不能为空";
+                        errorEl.style.display = "block";
+                        return;
+                    }
+
+                    fetch(`${API_BASE}/login`, {
+                        method: "POST",
+                        headers: {"Content-Type": "application/json"},
+                        credentials: 'include',
+                        body: JSON.stringify({username, password, captcha})
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.code === 200) {
+                            localStorage.setItem(TOKEN_KEY, data.data.token);
+                            document.getElementById("loginPage").classList.add("hidden");
+                            document.getElementById("mainContent").classList.remove("main-content");
+                            initAllFunctions();
+                        } else {
+                            errorEl.textContent = data.msg;
+                            errorEl.style.display = "block";
+                            refreshCaptcha();
+                        }
+                    })
+                    .catch(err => {
+                        console.error("登录请求失败：", err);
+                        errorEl.textContent = "登录失败，请检查后端服务是否运行";
+                        errorEl.style.display = "block";
+                    });
+                });
+            }
+
+            // 验证码图片点击刷新
+            const captchaImg = document.getElementById("captchaImg");
+            if (captchaImg) {
+                captchaImg.addEventListener("click", refreshCaptcha);
+            }
+
+            // ------------------------------
+            // 2. 主页面事件
+            // ------------------------------
+            // 祝福按钮
+            const surpriseBtn = document.getElementById("surpriseBtn");
+            if (surpriseBtn) {
+                surpriseBtn.addEventListener("click", showSurprise);
+            }
+
+            // 打开相册按钮
+            const openAlbumBtn = document.querySelector(".album-button");
+            if (openAlbumBtn) {
+                openAlbumBtn.addEventListener("click", showAlbum);
+            }
+
+            // 退出登录按钮
+            const globalLogoutBtn = document.getElementById("globalLogoutBtn");
+            if (globalLogoutBtn) {
+                globalLogoutBtn.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    logout();
+                });
+            }
+
+            // ------------------------------
+            // 3. 相册事件
+            // ------------------------------
+            // 返回按钮
+            const backBtn = document.getElementById("backBtn");
+            if (backBtn) {
+                backBtn.addEventListener("click", closeAlbum);
+            }
+
+            // 查看器关闭按钮
+            const closeViewerBtn = document.getElementById("closeViewerBtn");
+            if (closeViewerBtn) {
+                closeViewerBtn.addEventListener("click", closeViewer);
+            }
+
+            // 查看器上一张
+            const viewerPrevBtn = document.getElementById("viewerPrevBtn");
+            if (viewerPrevBtn) {
+                viewerPrevBtn.addEventListener("click", prevImage);
+            }
+
+            // 查看器下一张
+            const viewerNextBtn = document.getElementById("viewerNextBtn");
+            if (viewerNextBtn) {
+                viewerNextBtn.addEventListener("click", nextImage);
+            }
+
+            // ------------------------------
+            // 4. 键盘全局事件
+            // ------------------------------
+            document.addEventListener('keydown', (e) => {
+                // 相册键盘控制
+                if (isAlbumOpen) {
+                    const viewer = document.getElementById('albumViewer');
+                    if (viewer.classList.contains('active')) {
+                        switch(e.key) {
+                            case 'Escape': closeViewer(); break;
+                            case 'ArrowLeft': prevImage(); break;
+                            case 'ArrowRight': nextImage(); break;
+                        }
+                    } else if (e.key === 'Escape') {
+                        closeAlbum();
+                    }
+                }
+
+                // 空格键控制音乐播放（排除输入框）
+                if (e.code === 'Space' && !e.target.matches('input, textarea')) {
+                    // 只有在登录后才响应
+                    const mainContent = document.getElementById("mainContent");
+                    if (mainContent && !mainContent.classList.contains('main-content')) {
+                        e.preventDefault();
+                        togglePlayPause();
+                    }
+                }
+            });
+        }
+
+        /**
+         * 显示退出按钮
+         */
+        function showLogoutButton() {
+            const logoutContainer = document.getElementById("logoutContainer");
+            if (logoutContainer) {
+                logoutContainer.style.display = "block";
+            }
+        }
+
+        /**
+         * 隐藏退出按钮
+         */
+        function hideLogoutButton() {
+            const logoutContainer = document.getElementById("logoutContainer");
+            if (logoutContainer) {
+                logoutContainer.style.display = "none";
+            }
+        }
+
+        /**
+         * ==================== 退出登录功能 ====================
+         */
+        function logout() {
+            // 显示确认对话框
+            if (!confirm("确定要退出登录吗？")) {
+                return;
+            }
+
+            console.log("开始退出登录流程...");
+
+            // 1. 清除本地存储的token
+            localStorage.removeItem(TOKEN_KEY);
+
+            // 2. 可选：向后端发送退出请求
+            fetch(`${API_BASE}/logout`, {
+                method: "POST",
+                credentials: 'include'
+            })
+            .then(response => {
+                console.log("后端退出请求完成");
+                return response.json();
+            })
+            .catch(err => {
+                console.log("后端登出接口调用失败，不影响前端登出:", err);
+            })
+            .finally(() => {
+                // 3. 清理页面状态
+                clearPageState();
+
+                // 4. 隐藏退出按钮
+                hideLogoutButton();
+
+                // 5. 切换页面显示
+                document.getElementById("loginPage").classList.remove("hidden");
+                document.getElementById("mainContent").classList.add("main-content");
+
+                // 6. 清空表单
+                document.getElementById("username").value = "";
+                document.getElementById("password").value = "";
+                document.getElementById("captcha").value = "";
+
+                // 7. 刷新验证码
+                refreshCaptcha();
+
+                // 8. 显示退出成功消息
+                setTimeout(() => {
+                    alert("已成功退出登录");
+                }, 300);
+
+                console.log("退出登录完成");
+            });
+        }
+
+        /**
+         * 清理页面状态
+         */
+        function clearPageState() {
+            console.log("清理页面状态...");
+
+            // 停止音乐
+            const bgMusic = document.getElementById("bgMusic");
+            if (bgMusic) {
+                bgMusic.pause();
+                bgMusic.currentTime = 0;
+            }
+
+            // 重置播放按钮
+            const playBtn = document.getElementById("playBtn");
+            if (playBtn) {
+                const playIcon = playBtn.querySelector("i");
+                if (playIcon) {
+                    playIcon.className = "fas fa-play";
+                }
+            }
+
+            // 关闭相册
+            const albumContainer = document.getElementById("albumContainer");
+            const viewer = document.getElementById("albumViewer");
+            const backBtn = document.getElementById("backBtn");
+
+            if (albumContainer) albumContainer.classList.remove("active");
+            if (viewer) viewer.classList.remove("active");
+            if (backBtn) backBtn.classList.remove("active");
+
+            // 重置祝福按钮
+            const surpriseDiv = document.getElementById("surprise");
+            const surpriseBtn = document.getElementById("surpriseBtn");
+
+            if (surpriseDiv) surpriseDiv.style.display = "none";
+            if (surpriseBtn) {
+                surpriseBtn.innerText = "点我看看";
+                surpriseBtn.style.backgroundColor = "";
+                surpriseBtn.disabled = false;
+            }
+
+            // 重置相册状态
+            const mainCard = document.getElementById("mainCard");
+            if (mainCard) {
+                mainCard.style.display = "inline-block";
+            }
+
+            // 恢复页面背景
+            // document.body.style.backgroundColor = "#fff5f7";
+
+            // 恢复滚动
+            document.body.style.overflow = "auto";
+        }
+
+        // 在页面加载完成后绑定退出按钮事件
+        document.addEventListener('DOMContentLoaded', function() {
+            // 绑定全局退出按钮事件
+            const globalLogoutBtn = document.getElementById("globalLogoutBtn");
+            if (globalLogoutBtn) {
+                globalLogoutBtn.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    logout();
+                });
+            }
+
+            // 原有的其他初始化代码...
+            const captchaImg = document.getElementById('captchaImg');
+            if (captchaImg) {
+                captchaImg.addEventListener('click', function() {
+                    console.log("验证码图片被点击，刷新验证码...");
+                    fetch(`${API_BASE}/captcha`, {
+                        credentials: 'include'  // 确保这里也有
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.code === 200) {
+                                captchaImg.src = data.data.captcha_img;
+                                console.log("验证码已刷新");
+                            }
+                        })
+                        .catch(err => console.log("验证码刷新失败:", err));
+                });
+                console.log("验证码图片点击事件已绑定");
+            }
+        });
+
+        // 验证token函数，在验证失败时隐藏退出按钮
+        function verifyToken(token) {
+            // 向后端的token验证接口发送POST请求
+            fetch(`${API_BASE}/verify`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                credentials: 'include',
+                body: JSON.stringify({
+                    token: token // 此接口需要body中传递token
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.code === 200) {
+                    // token有效，显示主内容
+                    document.getElementById("loginPage").classList.add("hidden");
+                    document.getElementById("mainContent").classList.remove("main-content");
+                    initAllFunctions(); // 这会显示退出按钮
+                } else {
+                    // token无效，清除并显示登录页
+                    localStorage.removeItem(TOKEN_KEY);
+                    document.getElementById("loginPage").classList.add("hidden");
+                    hideLogoutButton(); // 隐藏退出按钮
+                    console.log("Token无效，请重新登录:", data.msg);
+                }
+            })
+            .catch(err => {
+                console.error("Token验证失败:", err);
+                localStorage.removeItem(TOKEN_KEY);
+                document.getElementById("loginPage").classList.add("hidden");
+                hideLogoutButton(); // 隐藏退出按钮
+            });
+        }
+
+        // 登录按钮点击事件
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const captcha = document.getElementById("captcha").value.trim();
+            const errorEl = document.getElementById("loginError");
+
+            // 清空错误提示
+            errorEl.style.display = "none";
+            errorEl.textContent = "";
+
+            // 前端校验
+            if (!username || !password || !captcha) {
+                errorEl.textContent = "账号、密码、验证码不能为空";
+                errorEl.style.display = "block";
+                return;
+            }
+
+            // 发送登录请求
+            fetch(`${API_BASE}/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    captcha: captcha
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.code === 200) {
+                    // 登录成功，存储token
+                    localStorage.setItem(TOKEN_KEY, data.data.token);
+                    // 显示主内容
+                    document.getElementById("loginPage").classList.add("hidden");
+                    document.getElementById("mainContent").classList.remove("main-content");
+                    // 初始化原有功能
+                    initAllFunctions();
+                } else {
+                    // 登录失败，显示错误信息
+                    errorEl.textContent = data.msg;
+                    errorEl.style.display = "block";
+                    // 刷新验证码
+                    refreshCaptcha();
+                }
+            })
+            .catch(err => {
+                console.error("登录请求失败：", err);
+                errorEl.textContent = "登录失败，请检查后端服务是否运行";
+                errorEl.style.display = "block";
+            });
+        });
+
+        /**
+         * ==================== 相册功能 ====================
+         */
+        // 相册数据
+        const albumData = [
+            {
+                id: 1,
+                title: "父亲和母亲",
+                description: "这张照片我看过很多次，令我印象深刻",
+                src: "picture/momAndDad.jpg",
+                date: "2004年之前"
+            },
+            {
+                id: 2,
+                title: "妈妈的笑容",
+                description: "我能感受到她发自内心的喜悦", // 图片描述
+                src: "picture/momAndMe.jpg",
+                date: "我的出现"
+            },
+            {
+                id: 3,
+                title: "快乐的安利家庭",
+                description: "我依稀记得她那个时候在安利工作",
+                src: "picture/20090131.jpg",
+                date: "2009年1月31日"
+            },
+            {
+                id: 4,
+                title: "快乐的安利家庭",
+                description: "那个时候我妈还会化妆，现在我从来没见过她化妆了",
+                src: "picture/mom.jpg",
+                date: "2009年1月31日"
+            },
+            {
+                id: 5,
+                title: "虎门鸦片战争旧址1日游",
+                description: "那个时候她还很瘦",
+                src: "picture/mother.jpg",
+                date: "2010年8月3日"
+            },
+            {
+                id: 6,
+                title: "虎门鸦片战争旧址1日游",
+                description: "这个地方我好像也去过",
+                src: "picture/myMother.jpg",
+                date: "2010年8月3日"
+            },
+            {
+                id: 7,
+                title: "虎门鸦片战争旧址1日游",
+                description: "如果您现在减肥成功，瘦到这个时候的样子，您是否愿意？",
+                src: "picture/20100803.jpg",
+                date: "2010年8月3日"
+            },
+            {
+                id: 8,
+                title: "母亲和我还有我的两个表哥",
+                description: "我妈的爆炸头十分显眼，但我却没什么印象了",
+                src: "picture/myMotherMyTwoCousinsAndI.jpg",
+                date: "2010年"
+            },
+            {
+                id: 9,
+                title: "母亲和舅舅",
+                description: "这张老照片我第一次见，那个时候我妈还很年轻",
+                src: "picture/momAndUncle.jpg",
+                date: "久远的回忆"
+            },
+            {
+                id: 10,
+                title: "母亲和大哥",
+                description: "我妈依旧爆炸头，我哥依旧潮流",
+                src: "picture/motherAndEldestSon.jpg",
+                date: "2010年"
+            },
+            {
+                id: 11,
+                title: "母亲和大哥",
+                description: "这个饭局我应该没有参加",
+                src: "picture/20210417.jpg",
+                date: "2021年4月17日"
+            },
+            {
+                id: 12,
+                title: "志愿者时期",
+                description: "那个时候她经常参加志愿者的工作，在我看来这是有爱心的",
+                src: "picture/20180421.jpg",
+                date: "2018年4月21日"
+            },
+            {
+                id: 13,
+                title: "志愿者时期",
+                description: "在她志愿者行动的感化下，我也参加过一段时间的志愿者活动",
+                src: "picture/20200318.jpg",
+                date: "2020年3月18日"
+            },
+            {
+                id: 14,
+                title: "社交活动",
+                description: "我妈在我初中时期交到了不少朋友，那个时候她们经常聚会，尽管我现在很少看到她参与社交活动",
+                src: "picture/20191201.jpg",
+                date: "2019年12月1日"
+            },
+            {
+                id: 15,
+                title: "港珠澳大桥一日游",
+                description: "这次活动给她带来了一次不错的体验",
+                src: "picture/20181113.jpg",
+                date: "2018年11月13日"
+            },
+            {
+                id: 16,
+                title: "情人节",
+                description: "现在很少看到他们这般恩爱了",
+                src: "picture/20190214.jpg",
+                date: "2019年2月14日"
+            },
+            {
+                id: 17,
+                title: "自拍",
+                description: "这是我快要参加第一次高考的时候，也不禁感叹自己竟然要成年了",
+                src: "picture/20220403.jpg",
+                date: "2022年4月3日"
+            },
+            {
+                id: 18,
+                title: "初入大学",
+                description: "抵达校门口之时，大学校门竟然如此气派！",
+                src: "picture/enteringUniversity1.jpg",
+                date: "2024年9月9日"
+            },
+            {
+                id: 19,
+                title: "初入大学",
+                description: "我知道，我实现了她的一个愿望",
+                src: "picture/enteringUniversity2.jpg",
+                date: "2024年9月9日"
+            },
+            {
+                id: 20,
+                title: "故事还在继续",
+                description: "故事还在继续，我还得稳步前行才行...",
+                src: "picture/theStoryGoesOn.jpg",
+                date: "2026年3月8日"
+            }
+        ];
+
+        let currentImageIndex = 0; // 当前查看的图片索引
+        let isAlbumOpen = false; // 相册是否打开的状态标志
+
+        /**
+         * 显示相册函数
+         */
+        function showAlbum() {
+            const albumContainer = document.getElementById('albumContainer'); // 获取相册容器元素
+            const mainCard = document.getElementById('mainCard'); // 获取主祝福卡片元素
+            const backBtn = document.getElementById('backBtn'); // 获取返回按钮元素
+            const body = document.body; // 获取body元素
+            const logoutContainer = document.getElementById('logoutContainer'); // 获取退出登录按钮的容器
+
+            // 隐藏主卡片
+            mainCard.style.display = 'none';
+
+            // 显示相册容器
+            albumContainer.classList.add('active');
+
+            // 显示返回按钮
+            backBtn.classList.add('active');
+
+            // 隐藏退出登录按钮
+            if (logoutContainer) {
+                logoutContainer.style.display = 'none';
+            }
+
+            // 更新状态
+            isAlbumOpen = true;
+
+            // 改变页面背景
+            body.style.backgroundColor = '#ffffff';
+
+            // 渲染相册
+            renderAlbum();
+
+            console.log("相册已打开"); // 控制台日志，用于调试
+        }
+
+        /**
+         * 关闭相册函数
+         */
+        function closeAlbum() {
+            const albumContainer = document.getElementById('albumContainer');
+            const mainCard = document.getElementById('mainCard');
+            const backBtn = document.getElementById('backBtn');
+            const body = document.body;
+            const viewer = document.getElementById('albumViewer'); // 获取图片查看器元素
+            const logoutContainer = document.getElementById('logoutContainer'); // 获取退出登录按钮的容器
+
+            // 关闭查看器（如果打开）
+            viewer.classList.remove('active');
+
+            // 隐藏相册容器
+            albumContainer.classList.remove('active');
+
+            // 隐藏返回按钮
+            backBtn.classList.remove('active');
+
+            // 显示主卡片
+            mainCard.style.display = 'inline-block';
+
+            // 恢复显示退出登录按钮
+            if (logoutContainer) {
+                logoutContainer.style.display = 'block';
+            }
+
+            // 更新相册状态为关闭
+            isAlbumOpen = false;
+
+            // 恢复页面背景
+            body.style.backgroundColor = '#fff5f7';
+
+            console.log("相册已关闭");
+        }
+
+        /**
+         * 渲染相册函数
+         */
+        function renderAlbum() {
+            const albumGrid = document.getElementById('albumGrid'); // 获取相册网格容器元素
+
+            // 清空现有内容
+            albumGrid.innerHTML = '';
+
+            // 创建加载动画元素
+            const loading = document.createElement('div');
+            loading.className = 'loading'; // 添加加载动画类名
+            albumGrid.appendChild(loading); // 将加载动画添加到网格中
+
+            // 模拟加载延迟
+            setTimeout(() => {
+                // 移除加载动画
+                albumGrid.innerHTML = '';
+
+                // 遍历相册数据数组，为每张图片创建HTML元素
+                albumData.forEach((item, index) => {
+                    const albumItem = document.createElement('div'); // 创建相册项容器
+                    albumItem.className = 'album-item'; // 添加相册项类名
+                    // 设置点击事件，点击时打开图片查看器
+                    albumItem.onclick = () => openViewer(index);
+
+                    // 设置相册项HTML内容
+                    albumItem.innerHTML = `
+                        <img src="${item.src}" alt="${item.title}" loading="lazy">
+                        <div class="album-caption">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <p><small>${item.date}</small></p>
+                        </div>
+                    `;
+
+                    // 将相册项添加到网格中
+                    albumGrid.appendChild(albumItem);
+                });
+            }, 800); // 800毫秒延迟，模拟网络加载
+        }
+
+        /**
+         * 打开图片查看器函数
+         */
+        function openViewer(index) {
+            const viewer = document.getElementById('albumViewer'); // 获取图片查看器元素
+            const viewerImage = document.getElementById('viewerImage'); // 获取图片查看器元素
+            const viewerTitle = document.getElementById('viewerTitle'); // 获取查看器标题元素
+            const viewerDesc = document.getElementById('viewerDesc'); // 获取查看器描述元素
+
+            // 更新当前图片索引
+            currentImageIndex = index;
+
+            // 获取当前图片数据
+            const currentImage = albumData[index];
+
+            // 更新查看器内容
+            viewerImage.src = currentImage.src; // 设置图片URL
+            viewerTitle.textContent = currentImage.title; // 设置图片标题
+            viewerDesc.textContent = `${currentImage.description} - ${currentImage.date}`; // 设置图片描述和日期
+
+            // 显示查看器
+            viewer.classList.add('active');
+
+            // 阻止滚动
+            document.body.style.overflow = 'hidden';
+
+            console.log(`打开图片查看器: ${currentImage.title}`);
+        }
+
+        /**
+         * 关闭图片查看器函数
+         */
+        function closeViewer() {
+            const viewer = document.getElementById('albumViewer');
+            // 隐藏查看器
+            viewer.classList.remove('active');
+
+            // 恢复滚动
+            document.body.style.overflow = 'auto';
+
+            console.log("关闭图片查看器");
+        }
+
+        /**
+         * 查看上一张图片函数
+         */
+        function prevImage() {
+            currentImageIndex--;
+
+            // 如果索引小于0，则跳转到最后一张图片
+            if (currentImageIndex < 0) {
+                currentImageIndex = albumData.length - 1;
+            }
+
+            // 重新打开查看器，显示上一张图片
+            openViewer(currentImageIndex);
+        }
+
+        /**
+         * 查看下一张图片函数
+         */
+        function nextImage() {
+            currentImageIndex++;
+
+            // 如果索引超出范围，则跳转到第一张图片
+            if (currentImageIndex >= albumData.length) {
+                currentImageIndex = 0;
+            }
+
+            // 重新打开查看器，显示下一张图片
+            openViewer(currentImageIndex);
+        }
+
+        /**
+         * 键盘控制函数
+         */
+        document.addEventListener('keydown', (e) => {
+            // 如果相册没有打开，不处理键盘事件
+            if (!isAlbumOpen) {
+                return;
+            }
+
+            const viewer = document.getElementById('albumViewer');
+            // 如果查看器是打开状态
+            if (viewer.classList.contains('active')) {
+                switch(e.key) {
+                    case 'Escape': // ESC键：关闭查看器
+                        closeViewer();
+                        break;
+                    case 'ArrowLeft': // 左箭头键：上一张图片
+                        prevImage();
+                        break;
+                    case 'ArrowRight': // 右箭头键：下一张图片
+                        nextImage();
+                        break;
+                }
+            } else if (e.key === 'Escape') { // 如果查看器没有打开，按ESC键关闭相册
+                closeAlbum();
+            }
+        });
+
+        /**
+         * 展示隐藏祝福语 + 烟花 + 特效文字
+          * @param event
+         */
+        function showSurprise(event) {
+            // 阻止事件冒泡
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            // 1. 显示隐藏的祝福区域
+            const surpriseDiv = document.getElementById('surprise');
+            surpriseDiv.style.display = 'block';
+
+            // 2. 精确选择祝福卡片中的按钮
+            const surpriseBtn = document.getElementById('surpriseBtn');
+            if (surpriseBtn) {
+                // 2. 找到按钮，修改它的文字
+                surpriseBtn.innerText = '祝福已送达！';
+
+                // 3. 修改按钮背景色为浅灰色
+                surpriseBtn.style.backgroundColor = '#ccc';
+
+                // 4. 禁用按钮（不能再次点击）
+                surpriseBtn.disabled = true;
+            }
+
+            // 强制触发一次用户交互（解决音效播放限制）
+            document.body.click(); // 模拟点击，解决浏览器自动播放策略限制
+
+            // 特效逻辑
+            // 3. 启动烟花
+            startFireworks();
+
+            // 4. 延迟 2.5 秒后（烟花放一会），显示文字
+            setTimeout(() => {
+                showGreetingText("女神节快乐");
+            }, 2500);
+
+            // 5. 延迟 8 秒后，清除烟花和文字（保留祝福语），让页面恢复交互
+            setTimeout(() => {
+                stopFireworks();
+                hideGreetingText();
+            }, 8000);
+        }
+
+        // ==================== 烟花音效初始化 ====================
+        const fireworkSound = document.getElementById('fireworkSound');
+        const celebrationMusic = document.getElementById('celebrationMusic');
+
+        // 优化音效播放：解决浏览器自动播放限制
+        function playSound(audioElement, volume = 1) {
+            if (!audioElement) {
+                return;
+            }
+
+            // 核心：深度克隆音频节点
+            // 这样每一朵烟花都有一个独立的音频播放器，不会互相切断
+            const soundClone = audioElement.cloneNode(true);
+
+            // 设置音量（可以稍微降低一点，因为多个音轨叠加会变响）
+            soundClone.volume = volume * 0.8;
+
+            // 播放克隆出来的副本
+            soundClone.play().catch(err => {
+                console.log("音效播放受限（需用户交互）:", err);
+            });
+
+            // 播放完后自动清理（4秒后）
+            // 防止DOM节点堆积过多
+            setTimeout(() => {
+                soundClone.pause();
+                soundClone.src = '';
+                soundClone.remove();
+            }, 4500); // 音效时长+一点缓冲，4秒的音效填4500
+        }
+
+        // ==================== 烟花核心逻辑 ====================
+        let fireworksInterval;
+        const fireworksContainer = document.getElementById('fireworksContainer');
+        // 女神节专属配色
+        const FIREWORK_COLORS = ['#e9546b', '#ff9eb5', '#ffd700', '#ff69b4', '#fff', '#ba55d3', '#ffb6c1'];
+        // 烟花类型：圆形、心形、星形
+        const FIREWORK_TYPES = ['circle', 'heart', 'star'];
+
+        // 启动烟花
+        function startFireworks() {
+            if (!fireworksContainer) {
+                return;
+            }
+
+            fireworksContainer.classList.add('active');
+
+            // 播放背景音乐
+            if (celebrationMusic) {
+                celebrationMusic.volume = 0.3;
+                celebrationMusic.currentTime = 0;
+                celebrationMusic.play().catch(e => console.log("BGM播放需用户交互"));
+            }
+
+            // 开场3连发大烟花
+            for(let i=0; i<3; i++) {
+                setTimeout(() => {
+                    const type = i === 1 ? 'heart' : FIREWORK_TYPES[Math.floor(Math.random() * FIREWORK_TYPES.length)];
+                    createRocketFirework(type);
+                    playSound(fireworkSound, 0.9);
+                }, i * 800);
+            }
+
+            // 持续随机燃放
+            fireworksInterval = setInterval(() => {
+                const randomType = FIREWORK_TYPES[Math.floor(Math.random() * FIREWORK_TYPES.length)];
+                createRocketFirework(randomType);
+                playSound(fireworkSound, 0.7 + Math.random() * 0.3);
+
+                // 30%概率双响
+                if(Math.random() > 0.7) {
+                    setTimeout(() => {
+                        createRocketFirework('circle');
+                        playSound(fireworkSound, 0.6);
+                    }, 300 + Math.random() * 200);
+                }
+            }, 1200 + Math.random() * 600);
+        }
+
+        // 停止烟花
+        function stopFireworks() {
+            clearInterval(fireworksInterval);
+            if (celebrationMusic) celebrationMusic.pause();
+            if (fireworksContainer) {
+                setTimeout(() => {
+                    fireworksContainer.classList.remove('active');
+                    fireworksContainer.innerHTML = '';
+                }, 2000);
+            }
+        }
+
+        // 核心：创建带升空效果的烟花
+        function createRocketFirework(type = 'circle') {
+            if (!fireworksContainer) {
+                return;
+            }
+
+            // 随机升空位置和目标高度
+            const startX = Math.random() * window.innerWidth;
+
+            // ==================== 大幅调高：飞到屏幕最顶部 ====================
+            // 目标高度：屏幕高度的 5%-15% 区域（几乎贴着天花板）
+            const targetY = window.innerHeight * (0.75 + Math.random() * 0.4);
+
+            const color = FIREWORK_COLORS[Math.floor(Math.random() * FIREWORK_COLORS.length)];
+
+            // 创建升空拖尾
+            const trail = document.createElement('div');
+            trail.className = 'firework-trail';
+            trail.style.left = startX + 'px';
+            trail.style.bottom = '0';
+            trail.style.color = color;
+            trail.style.setProperty('--targetY', -targetY + 'px');
+            fireworksContainer.appendChild(trail);
+
+            // 升空完成后爆炸
+            setTimeout(() => {
+                trail.remove();
+                // 在升空的终点爆炸
+                createFirework(startX, window.innerHeight - targetY, type, color);
+            }, 800);
+        }
+
+        // 爆炸核心函数
+        function createFirework(x, y, type = 'circle', color) {
+            if (!fireworksContainer) {
+                return;
+            }
+
+            const particles = type === 'heart' ? 80 : 100;
+            const mainColor = color || FIREWORK_COLORS[Math.floor(Math.random() * FIREWORK_COLORS.length)];
+            const gravity = 180; // 重力下落值，更真实
+
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+
+                // 随机配色（同色系渐变）
+                const particleColor = Math.random() > 0.3 ? mainColor : FIREWORK_COLORS[Math.floor(Math.random() * FIREWORK_COLORS.length)];
+                particle.style.color = particleColor;
+                particle.style.background = particleColor;
+
+                // 不同烟花类型的轨迹计算
+                let angle, velocity, tx, ty;
+                const baseVelocity = 40 + Math.random() * 120;
+
+                if (type === 'heart') {
+                    // 心形烟花轨迹
+                    angle = (Math.PI * 2 * i) / particles;
+                    const t = angle;
+                    // 心形参数方程
+                    const heartX = 16 * Math.pow(Math.sin(t), 3);
+                    const heartY = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+                    tx = heartX * 8;
+                    ty = -heartY * 8;
+                } else if (type === 'star') {
+                    // 星形烟花轨迹
+                    angle = (Math.PI * 2 * i) / particles;
+                    const radius = baseVelocity * (0.6 + Math.abs(Math.sin(5 * angle)) * 0.8);
+                    tx = Math.cos(angle) * radius;
+                    ty = Math.sin(angle) * radius;
+                } else {
+                    // 圆形烟花（默认）
+                    angle = (Math.PI * 2 * i) / particles;
+                    velocity = baseVelocity;
+                    tx = Math.cos(angle) * velocity;
+                    ty = Math.sin(angle) * velocity;
+                }
+
+                // 传递动画参数
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.setProperty('--gravity', gravity + 'px');
+                particle.style.animation = `explode ${1.5 + Math.random() * 0.5}s ease-out forwards`;
+
+                fireworksContainer.appendChild(particle);
+
+                // 20%概率触发二次小爆炸
+                if (Math.random() > 0.8 && type === 'circle') {
+                    setTimeout(() => {
+                        createMiniExplode(x + tx, y + ty + gravity, particleColor);
+                    }, 600);
+                }
+
+                // 动画结束后清理DOM
+                setTimeout(() => particle.remove(), 2000);
+            }
+        }
+
+        // 二次小爆炸效果
+        function createMiniExplode(x, y, color) {
+            const miniParticles = 15;
+            for (let i = 0; i < miniParticles; i++) {
+                const miniParticle = document.createElement('div');
+                miniParticle.className = 'firework';
+                miniParticle.style.left = x + 'px';
+                miniParticle.style.top = y + 'px';
+                miniParticle.style.color = color;
+                miniParticle.style.background = color;
+
+                const angle = (Math.PI * 2 * i) / miniParticles;
+                const velocity = 20 + Math.random() * 30;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+
+                miniParticle.style.setProperty('--tx', tx + 'px');
+                miniParticle.style.setProperty('--ty', ty + 'px');
+                miniParticle.style.setProperty('--gravity', '20px');
+                miniParticle.style.animation = `miniExplode 0.8s ease-out forwards`;
+
+                fireworksContainer.appendChild(miniParticle);
+                setTimeout(() => miniParticle.remove(), 800);
+            }
+        }
+
+        // ==================== 特效文字相关函数 ====================
+        const greetingTextContainer = document.getElementById('greetingTextContainer');
+        const greetingTextEl = document.getElementById('greetingText');
+
+        function showGreetingText(text) {
+            if (!greetingTextContainer || !greetingTextEl) {
+                return;
+            }
+
+            greetingTextEl.innerHTML = ''; // 清空
+            greetingTextContainer.classList.add('active');
+
+            // 逐字拆分并添加动画
+            [...text].forEach((char, index) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char;
+                span.style.animationDelay = `${index * 0.2}s`; // 每个字延迟0.2秒
+                greetingTextEl.appendChild(span);
+            });
+        }
+
+        function hideGreetingText() {
+            if (greetingTextContainer) {
+                // 添加淡出效果（可选）
+                greetingTextContainer.style.transition = 'opacity 0.5s ease';
+                greetingTextContainer.style.opacity = '0';
+
+                setTimeout(() => {
+                    greetingTextContainer.classList.remove('active');
+                    greetingTextContainer.style.opacity = '1'; // 重置
+                }, 500);
+            }
+        }
+
+        /**
+         *   音乐播放列表数据
+         */
+        const musicPlaylist = [
+            {
+                id: 1, // 歌曲唯一标识符
+                title: "美丽的梦", // 歌曲标题
+                artist: "迭戈·纳瓦", // 艺术家或类型
+                duration: "1:37", // 歌曲时长（字符串格式，用于显示）
+                src: "audio/beautifulDream.mp3" // 音乐相对路径
+            },
+            {
+                id: 2,
+                title: "听妈妈的话",
+                artist: "周杰伦",
+                duration: "4:26",
+                src: "audio/listenToMom.mp3"
+            },
+            {
+                id: 3,
+                title: "一个非常快乐的圣诞节",
+                artist: "迈克尔·拉米尔·C",
+                duration: "2:10",
+                src: "audio/happyChristmas.mp3"
+            },
+            {
+                id: 4,
+                title: "晴天",
+                artist: "周杰伦",
+                duration: "4:30",
+                src: "audio/sunnyDay.mp3"
+            },
+            {
+                id:5,
+                title: "西海情歌",
+                artist: "刀郎",
+                duration: "5:43",
+                src:"audio/westSeaLoveSong.mp3"
+            },
+            {
+                id: 6,
+                title: "稻香",
+                artist: "周杰伦",
+                duration: "3:44",
+                src: "audio/fragranceOfRice.mp3"
+            },
+            {
+                id: 7,
+                title: "真的爱你",
+                artist: "Beyond",
+                duration: "4:35",
+                src: "audio/reallyLoveYou.mp3"
+            },
+            {
+                id: 8,
+                title: "路过青春",
+                artist: "张磊",
+                duration: "2:37",
+                src: "audio/passingThroughYouth.mp3"
+            },
+            {
+                id: 9,
+                title: "青花瓷",
+                artist: "周杰伦",
+                duration: "3:59",
+                src: "audio/blueAndWhitePorcelain.mp3"
+            },
+            {
+                id: 10,
+                title: "外婆",
+                artist: "周杰伦",
+                duration: "4:04",
+                src: "audio/grandma.mp3"
+            },
+            {
+                id: 11,
+                title: "爱错",
+                artist: "王力宏",
+                duration: "3:59",
+                src: "audio/lovingTheWrongPerson.mp3"
+            }
+        ];
+
+        // 获取DOM元素
+        const bgMusic = document.getElementById('bgMusic'); // 音频播放器元素
+        const playBtn = document.getElementById('playBtn'); // 播放/暂停按钮
+        const prevBtn = document.getElementById('prevBtn'); // 上一首按钮
+        const nextBtn = document.getElementById('nextBtn'); // 下一首按钮
+        const currentSongTitle = document.getElementById('currentSongTitle'); // 当前歌曲标题元素
+        const currentSongArtist = document.getElementById('currentSongArtist'); // 当前歌曲艺术家元素
+        const playlist = document.getElementById('playlist'); // 播放列表容器元素
+        const playlistToggle = document.getElementById('playlistToggle'); // 播放列表切换按钮
+
+        // 进度条相关DOM
+        const progressContainer = document.getElementById('progressContainer');
+        const progressPlayed = document.getElementById('progressPlayed');
+        const progressBuffer = document.getElementById('progressBuffer');
+        const progressDot = document.getElementById('progressDot');
+        const progressTooltip = document.getElementById('progressTooltip');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+
+        // 播放器状态变量
+        let currentMusicIndex = 0; // 当前播放歌曲的索引（从0开始）
+        let isPlaying = false; // 当前是否正在播放
+        let isPlaylistVisible = false; // 播放列表是否可见
+        let isDragging = false; // 拖拽状态
+
+        // ==================== 进度条核心函数 ====================
+        function updateProgress() {
+            if (isDragging || !bgMusic.duration) return;
+            const progress = (bgMusic.currentTime / bgMusic.duration) * 100;
+            progressPlayed.style.width = `${progress}%`;
+            progressDot.style.left = `${progress}%`;
+            currentTimeEl.textContent = formatTime(bgMusic.currentTime);
+        }
+
+        function updateBufferProgress() {
+            if (!bgMusic.duration || bgMusic.buffered.length === 0) return;
+            const bufferedEnd = bgMusic.buffered.end(bgMusic.buffered.length - 1);
+            const bufferProgress = (bufferedEnd / bgMusic.duration) * 100;
+            progressBuffer.style.width = `${bufferProgress}%`;
+        }
+
+        function initSongDuration() {
+            if (!bgMusic.duration) return;
+            totalTimeEl.textContent = formatTime(bgMusic.duration);
+            progressPlayed.style.width = "0%";
+            progressDot.style.left = "0%";
+            currentTimeEl.textContent = "00:00";
+            progressBuffer.style.width = "0%";
+        }
+
+        function seekTo(percent) {
+            if (!bgMusic.duration) return;
+            const safePercent = Math.max(0, Math.min(100, percent));
+            const targetTime = (safePercent / 100) * bgMusic.duration;
+            bgMusic.currentTime = targetTime;
+            progressPlayed.style.width = `${safePercent}%`;
+            progressDot.style.left = `${safePercent}%`;
+            currentTimeEl.textContent = formatTime(targetTime);
+        }
+
+        /**
+         * 初始化播放器函数
+         */
+        function initMusicPlayer() {
+            // 渲染播放列表
+            renderPlaylist();
+
+            // 加载第一首音乐
+            loadMusic(currentMusicIndex);
+
+            // 设置初始音量（0.7表示70%音量）
+            bgMusic.volume = 0.7;
+
+            // 绑定音频播放结束事件
+            bgMusic.addEventListener('ended', playNext);
+
+            // 绑定事件监听器
+            setupMusicEventListeners();
+
+            // 音频加载失败提示
+            bgMusic.addEventListener('error', () => {
+                alert(`音频加载失败：${musicPlaylist[currentMusicIndex].title}，请检查网络或链接`);
+                playNext(); // 自动播放下一首
+            });
+
+            // 注意：现代浏览器通常阻止自动播放，需要用户交互后才允许播放
+            // 因此这里不自动播放，等待用户点击播放按钮
+        }
+
+        /**
+         * 渲染播放列表函数
+         */
+        function renderPlaylist() {
+            playlist.innerHTML = ''; // 清空播放列表容器
+
+            // 遍历音乐播放列表，为每首歌创建播放列表项
+            musicPlaylist.forEach((music, index) => {
+                // 创建播放列表项元素
+                const playlistItem = document.createElement('div');
+
+                // 设置CSS类名，如果是当前播放的歌曲，添加active类
+                playlistItem.className = `playlist-item ${index === currentMusicIndex ? 'active' : ''}`;
+
+                // 设置播放列表项HTML内容
+                playlistItem.innerHTML = `
+                    <div class="item-title">${music.title}</div>
+                    <div class="item-duration">${music.duration}</div>
+                `;
+
+                // 为播放列表项添加点击事件监听器
+                playlistItem.addEventListener('click', () => {
+                    playMusic(index); // 点击时播放对应歌曲
+                });
+
+                // 将播放列表项添加到播放列表容器中
+                playlist.appendChild(playlistItem);
+            });
+        }
+
+        /**
+         * 加载音乐函数
+          * @param index
+         */
+        function loadMusic(index) {
+            // 更新当前音乐索引
+            currentMusicIndex = index;
+
+            // 从播放列表中获取当前音乐数据
+            const music = musicPlaylist[index];
+
+            // 设置音频元素的源为当前音乐的URL
+            bgMusic.src = music.src;
+
+            // 更新UI显示当前音乐信息
+            currentSongTitle.textContent = music.title; // 更新歌曲标题
+            currentSongArtist.textContent = music.artist; // 更新艺术家信息
+
+            // 更新播放列表激活项（高亮显示当前播放的歌曲）
+            updateActivePlaylistItem();
+
+            // 加载元数据后初始化进度条
+            bgMusic.onloadedmetadata = initSongDuration;
+        }
+
+        /**
+         * 播放音乐函数
+          * @param index
+         */
+        function playMusic(index) {
+            // 如果传入了索引且索引与当前索引不同，则加载该索引对应的音乐
+            if (index !== undefined && index !== currentMusicIndex) {
+                loadMusic(index);
+            }
+
+            // 播放音频
+            bgMusic.play()
+                .then(() => {
+                    isPlaying = true; // 更新播放状态
+                    updatePlayButton(); // 更新播放按钮图标
+                })
+                .catch(e => {
+                    console.log("播放失败，可能需要用户交互:", e);
+                    // 如果播放失败（通常是因为浏览器自动播放策略），提示用户
+                    alert("请点击播放按钮开始播放音乐");
+                });
+        }
+
+        /**
+         * 暂停音乐函数
+         */
+        function pauseMusic() {
+            bgMusic.pause(); // 暂停音频播放
+            isPlaying = false; // 更新播放状态
+            updatePlayButton(); // 更新播放按钮图标
+        }
+
+        /**
+         * 切换播放/暂停状态函数
+         */
+        function togglePlayPause() {
+            // 如果正在播放，则暂停；如果已暂停，则播放
+            if (isPlaying) {
+                pauseMusic();
+            } else {
+                playMusic();
+            }
+        }
+
+        /**
+         * 更新播放按钮状态函数
+         */
+        function updatePlayButton() {
+            // 获取播放按钮中的图标元素
+            const playIcon = playBtn.querySelector('i');
+
+            // 根据播放状态更新图标和提示文本
+            if (isPlaying) {
+                playIcon.className = 'fas fa-pause'; // 播放状态显示暂停图标
+                playBtn.title = "暂停"; // 更新提示文本
+            } else {
+                playIcon.className = 'fas fa-play'; // 暂停状态显示播放图标
+                playBtn.title = "播放"; // 更新提示文本
+            }
+        }
+
+        /**
+         * 播放下一首函数
+         */
+        function playNext() {
+            // 计算下一首的索引
+            let nextIndex = currentMusicIndex + 1;
+
+            // 如果已经到达列表末尾，回到第一首（实现循环播放）
+            if (nextIndex >= musicPlaylist.length) {
+                nextIndex = 0; // 重置索引为0，回到第一首
+            }
+
+            // 播放下一首音乐
+            playMusic(nextIndex);
+        }
+
+        /**
+         * 播放上一首函数
+         */
+        function playPrev() {
+            // 计算上一首的索引
+            let prevIndex = currentMusicIndex - 1;
+
+            // 如果已经到达列表开头，跳到最后一首（实现循环播放）
+            if (prevIndex < 0) {
+                prevIndex = musicPlaylist.length - 1; // 设置为最后一首的索引
+            }
+
+            // 播放上一首音乐
+            playMusic(prevIndex);
+        }
+
+        /**
+         * 更新播放列表激活项函数
+         */
+        function updateActivePlaylistItem() {
+            // 获取所有播放列表项
+            const items = playlist.querySelectorAll('.playlist-item');
+
+            // 遍历所有列表项，为当前播放的歌曲添加active类，移除其他的active类
+            items.forEach((item, index) => {
+                if (index === currentMusicIndex) {
+                    item.classList.add('active'); // 当前播放的歌曲高亮显示
+                } else {
+                    item.classList.remove('active'); // 其他歌曲取消高亮
+                }
+            });
+        }
+
+        /**
+         * 切换播放列表显示/隐藏函数
+         */
+        function togglePlaylist() {
+            // 切换播放列表可见状态
+            isPlaylistVisible = !isPlaylistVisible;
+
+            // 根据状态更新播放列表容器的类名和切换按钮的图标/文本
+            if (isPlaylistVisible) {
+                playlist.classList.add('show'); // 显示播放列表
+                playlistToggle.innerHTML = '<i class="fas fa-chevron-up"></i> 收起列表'; // 更新按钮文本和图标
+            } else {
+                playlist.classList.remove('show'); // 隐藏播放列表
+                playlistToggle.innerHTML = '<i class="fas fa-list"></i> 播放列表'; // 恢复按钮原始文本和图标
+            }
+        }
+
+        /**
+         * 设置事件监听器函数
+         */
+        function setupMusicEventListeners() {
+            // 播放/暂停按钮点击事件
+            playBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePlayPause();
+            });
+
+            // 上一首/下一首 按钮点击事件
+            prevBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                playPrev();
+            });
+
+            nextBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                playNext();
+            });
+
+            // 播放列表切换按钮点击事件
+            playlistToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePlaylist();
+            });
+
+            // 音频核心事件
+            bgMusic.addEventListener('timeupdate', updateProgress);
+            bgMusic.addEventListener('progress', updateBufferProgress);
+            bgMusic.addEventListener('loadedmetadata', initSongDuration);
+            // 音频播放结束事件 - 自动播放下一首
+            bgMusic.addEventListener('ended', playNext);
+
+            // 进度条点击跳转
+            progressContainer.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const rect = this.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const percent = (clickX / rect.width) * 100;
+                seekTo(percent);
+            });
+
+            // 进度条悬停时间预览
+            progressContainer.addEventListener('mousemove', function(e) {
+                e.stopPropagation();
+                const rect = this.getBoundingClientRect();
+                const hoverX = e.clientX - rect.left;
+                const percent = (hoverX / rect.width) * 100;
+
+                if (bgMusic.duration) {
+                    const hoverTime = (percent / 100) * bgMusic.duration;
+                    progressTooltip.textContent = formatTime(hoverTime);
+                }
+                progressTooltip.style.left = `${hoverX}px`;
+            });
+
+            // 进度条拖拽
+            progressDot.addEventListener('mousedown', function(e) {
+                e.stopPropagation();
+                isDragging = true;
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                e.stopPropagation();
+                const rect = progressContainer.getBoundingClientRect();
+                const moveX = e.clientX - rect.left;
+                const percent = (moveX / rect.width) * 100;
+
+                progressPlayed.style.width = `${Math.max(0, Math.min(100, percent))}%`;
+                progressDot.style.left = `${Math.max(0, Math.min(100, percent))}%`;
+            });
+
+            document.addEventListener('mouseup', function(e) {
+                if (!isDragging) return;
+                e.stopPropagation();
+                isDragging = false;
+
+                const rect = progressContainer.getBoundingClientRect();
+                const endX = e.clientX - rect.left;
+                const percent = (endX / rect.width) * 100;
+                seekTo(percent);
+            });
+
+            // 通过时间更新事件检测播放结束
+            bgMusic.addEventListener('timeupdate', function() {
+                // 如果当前时间接近总时长（考虑微小误差），则播放下一首
+                if(this.currentTime > 0 && this.duration > 0){
+                    const remaining = this.duration - this.currentTime;
+                    // 小于0.5秒时认为播放结束
+                    if(remaining < 0.5 && !this.paused){
+                        playNext();
+                    }
+                }
+            });
+
+            // 阻止音乐播放器卡片上的点击事件冒泡
+            const musicPlayerCard = document.getElementById('musicPlayerCard');
+            if (musicPlayerCard) {
+                musicPlayerCard.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+
+            // // 键盘快捷键支持
+            // document.addEventListener('keydown', (e) => {
+            //     // 空格键切换播放/暂停（排除在输入框或文本区域中按空格的情况）
+            //     if (e.code === 'Space' && !e.target.matches('input, textarea')) {
+            //         e.preventDefault(); // 阻止空格键的默认行为（滚动页面）
+            //         togglePlayPause(); // 切换播放/暂停
+            //     }
+            // });
+        }
+
+        // 页面加载完成后初始化音乐播放器
+        // document.addEventListener('DOMContentLoaded', initMusicPlayer);
+
+        // 绑定原有事件（按钮）
+        // 1. 祝福相关（已通过 onclick 绑定，这里不需要重复绑定，防止冲突）
+        // document.getElementById("surpriseBtn")?.addEventListener("click", showSurprise);
+
+        // 2. 相册相关
+        // document.querySelector(".album-button")?.addEventListener("click", showAlbum);
+        // document.getElementById("backBtn")?.addEventListener("click", closeAlbum);
+        // document.getElementById("viewerPrevBtn")?.addEventListener("click", prevImage);
+        // document.getElementById("viewerNextBtn")?.addEventListener("click", nextImage);
+
+        // 3. 音乐播放器相关（已在 initMusicPlayer 中绑定，这里不需要重复绑定）
+        // document.getElementById("playPauseBtn")?.addEventListener("click", togglePlayPause);
+        // document.getElementById("prevMusicBtn")?.addEventListener("click", playPrev);
+        // document.getElementById("nextMusicBtn")?.addEventListener("click", playNext);
+        // document.getElementById("togglePlaylistBtn")?.addEventListener("click", togglePlaylist);
+
+        // 为验证码图片添加点击事件监听器（验证码图片点击刷新）
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const captchaImg = document.getElementById('captchaImg');
+        //     if (captchaImg) {
+        //         captchaImg.addEventListener('click', refreshCaptcha);
+        //         console.log("验证码图片点击事件已绑定");
+        //     }
+        // });
+    </script>
+
+    <script>
+        // 监听字体加载完成，彻底解决加载过程中的模糊闪烁
+        document.fonts.ready.then(() => {
+            document.documentElement.classList.add('fonts-loaded');
+        });
+    </script>
+</body>
+</html>
